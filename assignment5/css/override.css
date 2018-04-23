@@ -8,6 +8,8 @@ body {
     background-image: url("../images/bg2.jpg");
     color: white;
     text-shadow: 0 0 30px darkorange;
+    font-family: 'Playfair', cursive;
+	
 }
 .photo-frame {
 	padding: 5px;
