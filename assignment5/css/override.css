@@ -5,7 +5,9 @@
               padding: 10px;}
 
 body {
-    background-image: url("../images/bg4.jpeg");
+    background-image: url("../images/b5.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     color: white;
     text-shadow: 0 0 30px darkorange;
     font-family: 'Playfair';
