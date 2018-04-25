@@ -5,7 +5,7 @@ define('DB_PASSWORD', 'inclass11');
 define('DB_NAME', 'inclass11');
  
 /* Attempt to connect to MySQL database */
-$link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+$connect = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 if(isset($_POST["first_name"], $_POST["last_name"]))
 {
  $first_name = mysqli_real_escape_string($connect, $_POST["first_name"]);
