@@ -43,7 +43,7 @@
         </form>
 
 <footer>
-  Website created by 
+  Website created by Team Beijing
 </footer>
 
     	
