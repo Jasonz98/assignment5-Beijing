@@ -30,5 +30,25 @@
       </nav> 
   
   <h2>Thank you for voting!</h2>
+	
+<footer>
+  Website created by Team Beijing
+</footer>
+
+    	
+
+    
+
+
+
+
+
+<script src="http://code.jquery.com/jquery.js"></script>
+    <script src="js/menu-highlighter.js"></script>
+</body>
+
+
+
+</html>
   
   
