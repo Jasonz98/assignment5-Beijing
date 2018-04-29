@@ -1,152 +1,153 @@
+<!DOCTYPE html>
 <html>
- <head>
-  <title>Live Add Edit Delete Datatables Records using PHP Ajax</title>
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
-  <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
-  <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
-  <style>
-  body
-  {
-   margin:0;
-   padding:0;
-   background-color:#f1f1f1;
-  }
-  .box
-  {
-   width:1270px;
-   padding:20px;
-   background-color:#fff;
-   border:1px solid #ccc;
-   border-radius:5px;
-   margin-top:25px;
-   box-sizing:border-box;
-  }
-  </style>
- </head>
- <body>
-  <div class="container box">
-   <h1 align="center">Live Add Edit Delete Datatables Records using PHP Ajax</h1>
-   <br />
-   <div class="table-responsive">
-   <br />
-    <div align="right">
-     <button type="button" name="add" id="add" class="btn btn-info">Add</button>
-    </div>
-    <br />
-    <div id="alert_message"></div>
-    <table id="user_data" class="table table-bordered table-striped">
-     <thead>
-      <tr>
-       <th>Frist Name</th>
-       <th>Last Name</th>
-       <th></th>
-      </tr>
-     </thead>
-    </table>
-   </div>
-  </div>
- </body>
-</html>
+	<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Basketball</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+  </head>
+<body>
 
-<script type="text/javascript" language="javascript" >
- $(document).ready(function(){
-  
-  fetch_data();
+	<nav class="navbar navbar-default">
+	  <div class="container-fluid">
 
-  function fetch_data()
-  {
-   var dataTable = $('#user_data').DataTable({
-    "processing" : true,
-    "serverSide" : true,
-    "order" : [],
-    "ajax" : {
-     url:"fetch.php",
-     type:"POST"
-    }
-   });
-  }
-  
-  function update_data(id, column_name, value)
-  {
-   $.ajax({
-    url:"update.php",
-    method:"POST",
-    data:{id:id, column_name:column_name, value:value},
-    success:function(data)
-    {
-     $('#alert_message').html('<div class="alert alert-success">'+data+'</div>');
-     $('#user_data').DataTable().destroy();
-     fetch_data();
-    }
-   });
-   setInterval(function(){
-    $('#alert_message').html('');
-   }, 5000);
-  }
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      <ul class="nav navbar-nav">
+	      	<li class="active"><a href="index.php"><strong>NY City</strong></a>
+	        <li><a href="people.php">People</a></li>
+	        <li><a href="food.php">Food</a></li>
+	        <li><a href="sights.php">Sights</a></li>
+	        <li><a href="signup.php">Signup</a></li>
+	      </ul>
+	      <ul class="nav navbar-nav navbar-right">
+	        <li class="dropdown">
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin <span class="caret"></span></a>
+	          <ul class="dropdown-menu">
+	            <li><a href="auth/logout.php">Log out</a></li>
+						<!--
+	            <li><a href="#">Something else here</a></li>
+	            <li role="separator" class="divider"></li>
+	            <li><a href="#">Separated link</a></li>
+	        	-->
+	          </ul>
+	        </li>
+	      </ul>
+	    </div><!-- /.navbar-collapse -->
+	  </div><!-- /.container-fluid -->
+	</nav>
 
-  $(document).on('blur', '.update', function(){
-   var id = $(this).data("id");
-   var column_name = $(this).data("column");
-   var value = $(this).text();
-   update_data(id, column_name, value);
-  });
-  
-  $('#add').click(function(){
-   var html = '<tr>';
-   html += '<td contenteditable id="data1"></td>';
-   html += '<td contenteditable id="data2"></td>';
-   html += '<td><button type="button" name="insert" id="insert" class="btn btn-success btn-xs">Insert</button></td>';
-   html += '</tr>';
-   $('#user_data tbody').prepend(html);
-  });
-  
-  $(document).on('click', '#insert', function(){
-   var first_name = $('#data1').text();
-   var last_name = $('#data2').text();
-   if(first_name != '' && last_name != '')
-   {
-    $.ajax({
-     url:"insert.php",
-     method:"POST",
-     data:{first_name:first_name, last_name:last_name},
-     success:function(data)
-     {
-      $('#alert_message').html('<div class="alert alert-success">'+data+'</div>');
-      $('#user_data').DataTable().destroy();
+
+	<div class="container">
+
+		<h1>Admin Panel</h1>
+
+    <div id="live_data"></div>
+
+	</div><!--container-->
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+  <script>
+    $(document).ready(function(){
+      function fetch_data()
+      {
+           $.ajax({
+                url:"database/select.php",
+                method:"POST",
+                success:function(data){
+                     $('#live_data').html(data);
+                }
+           });
+      }
       fetch_data();
-     }
-    });
-    setInterval(function(){
-     $('#alert_message').html('');
-    }, 5000);
-   }
-   else
-   {
-    alert("Both Fields is required");
-   }
-  });
-  
-  $(document).on('click', '.delete', function(){
-   var id = $(this).attr("id");
-   if(confirm("Are you sure you want to remove this?"))
-   {
-    $.ajax({
-     url:"delete.php",
-     method:"POST",
-     data:{id:id},
-     success:function(data){
-      $('#alert_message').html('<div class="alert alert-success">'+data+'</div>');
-      $('#user_data').DataTable().destroy();
-      fetch_data();
-     }
-    });
-    setInterval(function(){
-     $('#alert_message').html('');
-    }, 5000);
-   }
-  });
+      $(document).on('click', '#btn_add', function(){
+           var name = $('#name').text();
+           var email = $('#email').text();
+           var relationship = $('#relationship').text();
+           var interest = $('#interest').text();
+           if(name == '')
+           {
+                alert("Enter Name");
+                return false;
+           }
+           if(email == '')
+           {
+                alert("Enter Email");
+                return false;
+           }
+           if(relationship == '')
+           {
+                alert("Enter Relationship");
+                return false;
+           }
+           if(interest == '')
+           {
+                alert("Enter Interest");
+                return false;
+           }
+           $.ajax({
+                url:"database/insert.php",
+                method:"POST",
+                data:{name:name, email:email, relationship:relationship, interest:interest},
+                dataType:"text",
+                success:function(data)
+                {
+                     alert(data);
+                     fetch_data();
+                }
+           })
+      });
+      function edit_data(id, text, column_name)
+      {
+           $.ajax({
+                url:"database/edit.php",
+                method:"POST",
+                data:{id:id, text:text, column_name:column_name},
+                dataType:"text",
+                success:function(data){
+                     alert(data);
+                }
+           });
+      }
+      $(document).on('blur', '.name', function(){
+           var id = $(this).data("id1");
+           var name = $(this).text();
+           edit_data(id, name, "name");
+      });
+      $(document).on('blur', '.email', function(){
+           var id = $(this).data("id2");
+           var email = $(this).text();
+           edit_data(id,email, "email");
+      });
+      $(document).on('blur', '.relationship', function(){
+           var id = $(this).data("id3");
+           var relationship = $(this).text();
+           edit_data(id,relationship, "relationship");
+      });
+      $(document).on('blur', '.interest', function(){
+           var id = $(this).data("id4");
+           var interest = $(this).text();
+           edit_data(id,interest, "interest");
+      });
+      $(document).on('click', '.btn_delete', function(){
+           var id=$(this).data("id5");
+           if(confirm("Are you sure you want to delete this?"))
+           {
+                $.ajax({
+                     url:"database/delete.php",
+                     method:"POST",
+                     data:{id:id},
+                     dataType:"text",
+                     success:function(data){
+                          alert(data);
+                          fetch_data();
+                     }
+                });
+           }
+      });
  });
-</script>
+  </script>
+
+</body>
+</html>
