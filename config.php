@@ -1,16 +1,22 @@
 <?php
-/* Database credentials. Assuming you are running MySQL
-server with default setting (user 'root' with no password) */
-define('DB_SERVER', 'localhost');
-define('DB_USERNAME', 'assignment5');
-define('DB_PASSWORD', 'kostin');
-define('DB_NAME', 'assignment5');
+/*
+// mysql_connect("database-host", "username", "password")
+$conn = mysql_connect("66.147.242.186","urcscon3_beijing5","urcscon3_olicode") 
+            or die("cannot connected");
  
-/* Attempt to connect to MySQL database */
-$link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+// mysql_select_db("database-name", "connection-link-identifier")
+@mysql_select_db("test",$conn);
+*/
  
-// Check connection
-if($link === false){
-    die("ERROR: Could not connect. " . mysqli_connect_error());
-}
+/**
+ * mysql_connect is deprecated
+ * using mysqli_connect instead
+ */
+ 
+$databaseHost = '66.147.242.186';
+$databaseName = 'urcscon3_beijing5';
+$databaseUsername = 'urcscon3_olicode';
+$databasePassword = 'benoudrih';
+ 
+$mysqli = mysqli_connect($databaseHost, $databaseUsername, $databasePassword, $databaseName); 
 ?>
