@@ -14,7 +14,7 @@
       <h1>Basketball</h1>
       
           <a href="login.php">Sign in by clicking this!</a>
-          <div>Don't have an account?<a href="register.php"> Sign up by clicking this!</a>
+	<div>Don't have an account?<a href="register.php"> Sign up by clicking this!</a></div>
       
     </header>
 <body>
