@@ -12,11 +12,17 @@ $conn = mysql_connect("66.147.242.186","urcscon3_beijing5","urcscon3_olicode")
  * mysql_connect is deprecated
  * using mysqli_connect instead
  */
+ define('DB_SERVER', '66.147.242.186');
+define('DB_USERNAME', 'urcscon3_olicode');
+define('DB_PASSWORD', 'benoudrih');
+define('DB_NAME', 'urcscon3_beijing5');
  
-$databaseHost = 'localhost';
-$databaseName = 'urcscon3_beijing5';
-$databaseUsername = 'urcscon3_olicode';
-$databasePassword = 'benoudrih';
+/* Attempt to connect to MySQL database */
+$link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
  
-$mysqli = mysqli_connect($databaseHost, $databaseUsername, $databasePassword, $databaseName); 
-?>
+// Check connection
+if($link === false){
+    die("ERROR: Could not connect. " . mysqli_connect_error());
+}
+
+
