@@ -7,6 +7,16 @@
   <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
+  <nav>
+    <ul>
+       <li><a href="index.php">Home</a></li>
+    <li><a href="history.php">History</a></li>
+    <li><a href="rules.php">Rules</a></li>
+    <li><a href="nba.php">NBA</a></li>
+    <li><a href="players.php">Players</a></li>
+    <li><a href="survey.php">Take a survey?</a></li>
+        </ul>
+      </nav>
   <style>
   body
   {
