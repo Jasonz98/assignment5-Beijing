@@ -29,18 +29,14 @@
         </ul>
       </nav>  
 	
-<h2>Vote for the greatest team of all time!</h2>
-        <p>Please choose one</p>    
+<h2>Vote for your favorite team!</h2>
+        <p>Please type yours!</p>    
 
-<form action="submit.php" method="post">
-
-                <input class="together" type="radio" name="vote" class="form-control" value="celtics"> Boston Celtics <br>
-                <input class="together" type="radio" name="vote" class="form-control" value="bulls"> Chicago Bulls <br>
-                <input class="together" type="radio" name="vote" class="form-control" value="lakers"> Los Angeles Lakers <br>
-            
-                <input type="submit" class="btn btn-primary" value="Submit">
-            <br>
-        </form>
+<form method="post" action="submit.php">
+        
+        <input type="favorite" name="favorite" id="favorite" placeholder="Favorite team">
+        <input type="submit" value="Submit!">
+      </form>
 
 <footer>
   Website created by Team Beijing
