@@ -1,21 +1,25 @@
 <?php  
-	$databaseHost = '66.147.242.186';
-	$databaseName = 'urcscon3_beijing5';
-	$databaseUsername = 'urcscon3_olicode';
-	$databasePassword = 'benoudrih';
-	 
-	$mysqli = mysqli_connect($databaseHost, $databaseUsername, $databasePassword, $databaseName); 
-	$vote = $_POST['vote'];
-	
-	$sql = "INSERT INTO vote(vote) VALUES ('$vote')";
-	mysqli_query($connect, $sql);
-	
-	mysqli_close($connect); 
+	define('DB_SERVER', '66.147.242.186');
+define('DB_USERNAME', 'urcscon3_olicode');
+define('DB_PASSWORD', 'benoudrih');
+define('DB_NAME', 'urcscon3_beijing5');
  
-
-if($mysqli === false){
+/* Attempt to connect to MySQL database */
+$link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+ 
+// Check connection
+if($link === false){
     die("ERROR: Could not connect. " . mysqli_connect_error());
 }
+
+
+	$favorite = Trim(stripcslashes($_POST["favorite"]));
+	
+	$query = "INSERT INTO favorite (favorite1) VALUES ('$favorite')";
+  $result = mysqli_query($link, $query); 
+ 
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,4 +57,6 @@ if($mysqli === false){
 <footer>
   Website created by Team Beijing
 </footer>
-
+<?php
+  mysqli_close($connection);
+?>
