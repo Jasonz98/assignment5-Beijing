@@ -1,79 +1,66 @@
 <?php
-// including the database connection file
-include_once("config.php");
- 
-if(isset($_POST['update']))
-{    
-    $id = $_POST['id'];
-    
-    $name=$_POST['name'];
-    $email=$_POST['email'];
-    $team=$_POST['team'];    
-    
-    // checking empty fields
-    if(empty($name) || empty($email) || empty($team)) {            
-        if(empty($name)) {
-            echo "<font color='red'>Name field is empty.</font><br/>";
-        }
-        
-        if(empty($email)) {
-            echo "<font color='red'>Email field is empty.</font><br/>";
-        }
-        
-        if(empty($team)) {
-            echo "<font color='red'>Team field is empty.</font><br/>";
-        }        
-    } else {    
-        //updating the table
-        $result = mysqli_query($mysqli, "UPDATE users SET name='$name',email='$email',team='$team' WHERE id=$id");
-        
-        //redirecting to the display page. In our case, it is index.php
-        header("Location: index.php");
-    }
-}
-?>
-<?php
-//getting id from url
-$id = $_GET['id'];
- 
-//selecting data associated with this particular id
-$result = mysqli_query($mysqli, "SELECT * FROM users WHERE id=$id");
- 
-while($res = mysqli_fetch_array($result))
+include('renderform.php');
+
+// connect to the database
+include('connect-db.php');
+
+// check if the form has been submitted. If it has, process the form and save it to the database
+if (isset($_POST['submit']))
 {
-    $name = $res['name'];
-    $email = $res['email'];
-    $team = $res['team'];
+	// confirm that the 'id' value is a valid integer before getting the form data
+	if (is_numeric($_POST['id']))
+	{
+		// get form data, making sure it is valid
+		$id = $_POST['id'];
+		$firstname = mysqli_real_escape_string($connection, htmlspecialchars($_POST['firstname']));
+		$lastname = mysqli_real_escape_string($connection, htmlspecialchars($_POST['lastname']));
+
+		// check that firstname/lastname fields are both filled in
+		if ($firstname == '' || $lastname == '')
+		{
+			// generate error message
+			$error = 'ERROR: Please fill in all required fields!';
+
+			//error, display form
+			renderForm($id, $firstname, $lastname, $error);
+
+		} else {
+			// save the data to the database
+			$result = mysqli_query($connection, "UPDATE accounts SET firstname='$firstname', lastname='$lastname' WHERE id='$id'");
+
+			// once saved, redirect back to the view page
+			header("Location: view.php");
+		}
+	} else {
+		// if the 'id' isn't valid, display an error
+		echo 'Error!';
+	}
+} else {
+	// if the form hasn't been submitted, get the data from the db and display the form
+	// get the 'id' value from the URL (if it exists), making sure that it is valid (checing that it is numeric/larger than 0)
+	if (isset($_GET['id']) && is_numeric($_GET['id']) && $_GET['id'] > 0)
+	{
+		// query db
+		$id = $_GET['id'];
+		$result = mysqli_query($connection, "SELECT * FROM accounts WHERE id=$id");
+		$row = mysqli_fetch_array( $result );
+
+		// check that the 'id' matches up with a row in the databse
+		if($row)
+		{
+		// get data from db
+		$firstname = $row['firstname'];
+		$lastname = $row['lastname'];
+
+		// show form
+		renderForm($id, $firstname, $lastname, '');
+		} else {
+			// if no match, display result
+			echo "No results!";
+		}
+	} else {
+		// if the 'id' in the URL isn't valid, or if there is no 'id' value, display an error
+		echo 'Error!';
+	}
 }
 ?>
-<html>
-<head>    
-    <title>Edit Data</title>
-</head>
- 
-<body>
-    <a href="index.php">Home</a>
-    <br/><br/>
-    
-    <form name="form1" method="post" action="edit.php">
-        <table border="0">
-            <tr> 
-                <td>Name</td>
-                <td><input type="text" name="name" value="<?php echo $name;?>"></td>
-            </tr>
-            <tr> 
-                <td>Email</td>
-                <td><input type="text" name="email" value="<?php echo $email;?>"></td>
-            </tr>
-            <tr> 
-                <td>Team</td>
-                <td><input type="text" name="team" value="<?php echo $team;?>"></td>
-            </tr>
-            <tr>
-                <td><input type="hidden" name="id" value=<?php echo $_GET['id'];?>></td>
-                <td><input type="submit" name="update" value="Update"></td>
-            </tr>
-        </table>
-    </form>
-</body>
-</html>
