@@ -1,11 +1,12 @@
-<!doctype html>
 <html>
-<head>
-	<meta charset="utf-8">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-    	<link rel="stylesheet" href="css/override.css">
-    	<link href="https://fonts.googleapis.com/css?family=Bellefair" rel="stylesheet">
-	<title>View Records</title>	
+ <head>
+  <title>Live Add Edit Delete Datatables Records using PHP Ajax</title>
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+  <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.js"></script>
   <style>
   body
   {
@@ -27,7 +28,7 @@
  </head>
  <body>
   <div class="container box">
-   <h1 align="center">Add your information here!</h1>
+   <h1 align="center">Live Add Edit Delete Datatables Records using PHP Ajax</h1>
    <br />
    <div class="table-responsive">
    <br />
