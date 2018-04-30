@@ -11,11 +11,12 @@
 	mysqli_query($connect, $sql);
 	
 	mysqli_close($connect); 
- ?>
+ 
 
 if($mysqli === false){
     die("ERROR: Could not connect. " . mysqli_connect_error());
 }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
