@@ -21,11 +21,11 @@
   
 <nav>
     <ul>
-       <li><a href="index.html">Home</a></li>
-    <li><a href="history.html">History</a></li>
-    <li><a href="rules.html">Rules</a></li>
-    <li><a href="nba.html">NBA</a></li>
-    <li><a href="players.html">Players</a></li>
+       <li><a href="index.php">Home</a></li>
+    <li><a href="history.php">History</a></li>
+    <li><a href="rules.php">Rules</a></li>
+    <li><a href="nba.php">NBA</a></li>
+    <li><a href="players.php">Players</a></li>
     <li><a href="survey.php">Take a survey?</a></li>
         </ul>
       </nav>  
