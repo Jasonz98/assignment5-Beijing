@@ -1,5 +1,5 @@
 <?php
-define('DB_SERVER', '66.147.242.186');
+define('DB_SERVER', 'localhost');
 define('DB_USERNAME', 'urcscon3_olicode');
 define('DB_PASSWORD', 'benoudrih');
 define('DB_NAME', 'urcscon3_beijing5');
