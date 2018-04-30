@@ -1,6 +1,6 @@
 <html>
  <head>
-  <title>Live Add Edit Delete Datatables Records using PHP Ajax</title>
+  <title>Edit your personal information here!</title>
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
   <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
@@ -28,7 +28,7 @@
  </head>
  <body>
   <div class="container box">
-   <h1 align="center">Live Add Edit Delete Datatables Records using PHP Ajax</h1>
+   <h1 align="center">Edit your personal information here!</h1>
    <br />
    <div class="table-responsive">
    <br />
