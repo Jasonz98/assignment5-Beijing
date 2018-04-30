@@ -25,7 +25,7 @@
     <li><a href="rules.html">Rules</a></li>
     <li><a href="nba.html">NBA</a></li>
     <li><a href="players.html">Players</a></li>
-    <li><a href="survey.html">Take a survey?</a></li>
+    <li><a href="survey.php">Take a survey?</a></li>
         </ul>
       </nav> 
   
